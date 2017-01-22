@@ -1,0 +1,43 @@
+\hypertarget{_generator_8hpp}{\section{Generator.\-hpp File Reference}
+\label{_generator_8hpp}\index{Generator.\-hpp@{Generator.\-hpp}}
+}
+
+
+Generate a related graph G=(V,E)\par
+ Exemple of data format\par
+ Vi is the vertex indexes, V\-Cij is the indexes of vertices related to Vi \-:\par
+ $\vert$\-V$\vert$\par
+ V0 $\vert$\-V0$\vert$ V\-C00 V\-C01 V\-C02 V\-C03\par
+ V1 $\vert$\-V1$\vert$ V\-C10 V\-C11 V\-C12 V\-C13 V\-C14 V\-C15\par
+ V2 $\vert$\-V2$\vert$ V\-C20\par
+ V3 $\vert$\-V3$\vert$ V\-C30 V\-C31\par
+ V4 $\vert$\-V4$\vert$ V\-C40 V\-C41 V\-C42\par
+.  
+
+
+
+
+\subsection{Detailed Description}
+Generate a related graph G=(V,E)\par
+ Exemple of data format\par
+ Vi is the vertex indexes, V\-Cij is the indexes of vertices related to Vi \-:\par
+ $\vert$\-V$\vert$\par
+ V0 $\vert$\-V0$\vert$ V\-C00 V\-C01 V\-C02 V\-C03\par
+ V1 $\vert$\-V1$\vert$ V\-C10 V\-C11 V\-C12 V\-C13 V\-C14 V\-C15\par
+ V2 $\vert$\-V2$\vert$ V\-C20\par
+ V3 $\vert$\-V3$\vert$ V\-C30 V\-C31\par
+ V4 $\vert$\-V4$\vert$ V\-C40 V\-C41 V\-C42\par
+. \begin{DoxyAuthor}{Author}
+Jocelin C. 
+\end{DoxyAuthor}
+
+\begin{DoxyParams}{Parameters}
+{\em 1} & \-: graph cardinality, $\vert$\-V$\vert$ (at least 2) \\
+\hline
+{\em 2} & \-: minimum degree of vertices (at least 1) \\
+\hline
+{\em 3} & \-: maximum degree of vertices (at most $\vert$\-V$\vert$-\/1) \\
+\hline
+{\em 4} & \-: name of the generated file \\
+\hline
+\end{DoxyParams}
