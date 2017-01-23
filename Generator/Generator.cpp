@@ -31,16 +31,6 @@ void checkParameters(int argc, char *argv[]) {
 	assert(atoi(argv[3]) < atoi(argv[1]));
 }
 
-// Un tableau d'entiers stockant les indices de sommets non liés
-// Un tableau d'netiers stockant les indices des sommets déjà liés
-// Lier deux sommets non liés aléatoire entre eux
-// Tant que le nombre de sommets non liés est supérieur à 0
-// Sélectionner un sommet aléatoire lié et le lier à un sommet non lié aléatoire
-// Pour chaque sommet
-// Attribuer une cardinalité aléatoire
-// Tant que card(sommet) < cardRand
-// Lier le sommet avec un autre sommet aléatoire non déjà lié à lui
-
 void deleteTwoElements(int ind1, int ind2, int *size, int *table) {
 	int i, j, ind;
 	*size = *size - 2;
@@ -175,18 +165,25 @@ void generate(int card, int min, int max, char *fileName) {
 		}
 	}
 	
+	int moy = 0;
 	// We write in the file
 	for (i = 0; i < card; ++i) {
 		file << i << " ";
+		moy = moy + graph[i][0];
 		for (j = 0; j <= graph[i][0]; ++j) {
 			file << graph[i][j] << " ";
 		}
 		file << endl;
 	}
 	
+	cout << "moy=" << (double)moy/(double)card << endl;
 	file.close();
 }
 
+/// PROBLEMES :
+/// - NE FINIT PAS TOUJOURS (quand min et max sont proches)
+/// - LES SOMMETS D'INDICES PLUS ELEVES ONT EN MOYENNE UNE CARDINALITE PLUS ELEVEE
+/// - LA MOYENNE DES CARDINALITES DES SOMMETS EST PLUS ELEVEE QUE CELLE QUE L'ON DEVRAIT AVOIR
 int main(int argc, char *argv[]) {
 	checkParameters(argc, argv);
 	generate(atoi(argv[1]), atoi(argv[2]), atoi(argv[3]), argv[4]);

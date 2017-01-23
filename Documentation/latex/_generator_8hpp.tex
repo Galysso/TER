@@ -3,9 +3,9 @@
 }
 
 
-Generate a related graph G=(V,E)\par
+Generate a connected graph G=(V,E)\par
  Exemple of data format\par
- Vi is the vertex indexes, V\-Cij is the indexes of vertices related to Vi \-:\par
+ Vi is the vertex indexes, V\-Cij is the indexes of vertices connected to Vi \-:\par
  $\vert$\-V$\vert$\par
  V0 $\vert$\-V0$\vert$ V\-C00 V\-C01 V\-C02 V\-C03\par
  V1 $\vert$\-V1$\vert$ V\-C10 V\-C11 V\-C12 V\-C13 V\-C14 V\-C15\par
@@ -15,12 +15,30 @@ Generate a related graph G=(V,E)\par
 .  
 
 
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{_generator_8hpp_a9c7458ee667dd48c439f37b05dde5ae5}{string\-Is\-Int} (char $\ast$string)
+\begin{DoxyCompactList}\small\item\em Check if the string is an integer. \end{DoxyCompactList}\item 
+\hypertarget{_generator_8hpp_abc63f521f1e30092125dcf0ab70ed1d1}{void \hyperlink{_generator_8hpp_abc63f521f1e30092125dcf0ab70ed1d1}{check\-Parameters} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})}\label{_generator_8hpp_abc63f521f1e30092125dcf0ab70ed1d1}
+
+\begin{DoxyCompactList}\small\item\em check the given parameters when the program is executed \end{DoxyCompactList}\item 
+void \hyperlink{_generator_8hpp_aecdab0615f86c4856f97f9bdcc6daadd}{delete\-Element} (int ind, int $\ast$size, int $\ast$table)
+\begin{DoxyCompactList}\small\item\em Delete the element of a table at the given position and shift the table. \end{DoxyCompactList}\item 
+void \hyperlink{_generator_8hpp_a1cc93be7f661b6cf75a07ce950bcea73}{delete\-Two\-Elements} (int ind1, int ind2, int $\ast$size, int $\ast$table)
+\begin{DoxyCompactList}\small\item\em Delete two elements of a table at the given positions and shift the table. \end{DoxyCompactList}\item 
+void \hyperlink{_generator_8hpp_ab0589fa69308362769a28a6384083d6a}{connect} (int V1, int V2, int $\ast$$\ast$graph)
+\begin{DoxyCompactList}\small\item\em Connect two vertices in the graph. \end{DoxyCompactList}\item 
+bool \hyperlink{_generator_8hpp_a531412a36f7bd0a271d309b3af2f4ea9}{are\-Connected} (int V1, int V2, int $\ast$$\ast$graph)
+\begin{DoxyCompactList}\small\item\em Check if two vertices are connected. \end{DoxyCompactList}\item 
+void \hyperlink{_generator_8hpp_ae55920dd775b1fc766261874d3ce1292}{generate} (int card, int min, int max, char $\ast$file\-Name)
+\begin{DoxyCompactList}\small\item\em Generate the graph and write it in the choosen file. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Generate a related graph G=(V,E)\par
+Generate a connected graph G=(V,E)\par
  Exemple of data format\par
- Vi is the vertex indexes, V\-Cij is the indexes of vertices related to Vi \-:\par
+ Vi is the vertex indexes, V\-Cij is the indexes of vertices connected to Vi \-:\par
  $\vert$\-V$\vert$\par
  V0 $\vert$\-V0$\vert$ V\-C00 V\-C01 V\-C02 V\-C03\par
  V1 $\vert$\-V1$\vert$ V\-C10 V\-C11 V\-C12 V\-C13 V\-C14 V\-C15\par
@@ -32,12 +50,161 @@ Jocelin C.
 \end{DoxyAuthor}
 
 \begin{DoxyParams}{Parameters}
-{\em 1} & \-: graph cardinality, $\vert$\-V$\vert$ (at least 2) \\
+{\em 1} & (card) \-: graph cardinality, $\vert$\-V$\vert$ (card $>$ 1) \\
 \hline
-{\em 2} & \-: minimum degree of vertices (at least 1) \\
+{\em 2} & (min) \-: minimum degree of vertices ((min $>$ 0) A\-N\-D (min $<$ card)) \\
 \hline
-{\em 3} & \-: maximum degree of vertices (at most $\vert$\-V$\vert$-\/1) \\
+{\em 3} & (max) \-: maximum degree of vertices ((max $>$ min-\/1) A\-N\-D (min $<$ card)) \\
 \hline
-{\em 4} & \-: name of the generated file \\
+{\em 4} & (file) \-: name of the generated file \\
 \hline
 \end{DoxyParams}
+
+
+\subsection{Function Documentation}
+\hypertarget{_generator_8hpp_a531412a36f7bd0a271d309b3af2f4ea9}{\index{Generator.\-hpp@{Generator.\-hpp}!are\-Connected@{are\-Connected}}
+\index{are\-Connected@{are\-Connected}!Generator.hpp@{Generator.\-hpp}}
+\subsubsection[{are\-Connected}]{\setlength{\rightskip}{0pt plus 5cm}bool are\-Connected (
+\begin{DoxyParamCaption}
+\item[{int}]{V1, }
+\item[{int}]{V2, }
+\item[{int $\ast$$\ast$}]{graph}
+\end{DoxyParamCaption}
+)}}\label{_generator_8hpp_a531412a36f7bd0a271d309b3af2f4ea9}
+
+
+Check if two vertices are connected. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em V1} & the first vertex \\
+\hline
+{\em V2} & the seconde vertex \\
+\hline
+{\em graph} & the graph \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if V1 and V2 are connected in the given graph, false otherwise 
+\end{DoxyReturn}
+\hypertarget{_generator_8hpp_ab0589fa69308362769a28a6384083d6a}{\index{Generator.\-hpp@{Generator.\-hpp}!connect@{connect}}
+\index{connect@{connect}!Generator.hpp@{Generator.\-hpp}}
+\subsubsection[{connect}]{\setlength{\rightskip}{0pt plus 5cm}void connect (
+\begin{DoxyParamCaption}
+\item[{int}]{V1, }
+\item[{int}]{V2, }
+\item[{int $\ast$$\ast$}]{graph}
+\end{DoxyParamCaption}
+)}}\label{_generator_8hpp_ab0589fa69308362769a28a6384083d6a}
+
+
+Connect two vertices in the graph. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em V1} & the first vertex to connect \\
+\hline
+{\em V2} & the second vertex to connect \\
+\hline
+{\em graph} & the graph \\
+\hline
+\end{DoxyParams}
+\hypertarget{_generator_8hpp_aecdab0615f86c4856f97f9bdcc6daadd}{\index{Generator.\-hpp@{Generator.\-hpp}!delete\-Element@{delete\-Element}}
+\index{delete\-Element@{delete\-Element}!Generator.hpp@{Generator.\-hpp}}
+\subsubsection[{delete\-Element}]{\setlength{\rightskip}{0pt plus 5cm}void delete\-Element (
+\begin{DoxyParamCaption}
+\item[{int}]{ind, }
+\item[{int $\ast$}]{size, }
+\item[{int $\ast$}]{table}
+\end{DoxyParamCaption}
+)}}\label{_generator_8hpp_aecdab0615f86c4856f97f9bdcc6daadd}
+
+
+Delete the element of a table at the given position and shift the table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ind} & the index of the element to delete \\
+\hline
+{\em size} & the size of the table \\
+\hline
+{\em table} & the table \\
+\hline
+\end{DoxyParams}
+\hypertarget{_generator_8hpp_a1cc93be7f661b6cf75a07ce950bcea73}{\index{Generator.\-hpp@{Generator.\-hpp}!delete\-Two\-Elements@{delete\-Two\-Elements}}
+\index{delete\-Two\-Elements@{delete\-Two\-Elements}!Generator.hpp@{Generator.\-hpp}}
+\subsubsection[{delete\-Two\-Elements}]{\setlength{\rightskip}{0pt plus 5cm}void delete\-Two\-Elements (
+\begin{DoxyParamCaption}
+\item[{int}]{ind1, }
+\item[{int}]{ind2, }
+\item[{int $\ast$}]{size, }
+\item[{int $\ast$}]{table}
+\end{DoxyParamCaption}
+)}}\label{_generator_8hpp_a1cc93be7f661b6cf75a07ce950bcea73}
+
+
+Delete two elements of a table at the given positions and shift the table. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ind1} & the index of the first element to delete \\
+\hline
+{\em ind2} & the index of the second element to delete \\
+\hline
+{\em size} & the size of the table \\
+\hline
+{\em table} & the table \\
+\hline
+\end{DoxyParams}
+\hypertarget{_generator_8hpp_ae55920dd775b1fc766261874d3ce1292}{\index{Generator.\-hpp@{Generator.\-hpp}!generate@{generate}}
+\index{generate@{generate}!Generator.hpp@{Generator.\-hpp}}
+\subsubsection[{generate}]{\setlength{\rightskip}{0pt plus 5cm}void generate (
+\begin{DoxyParamCaption}
+\item[{int}]{card, }
+\item[{int}]{min, }
+\item[{int}]{max, }
+\item[{char $\ast$}]{file\-Name}
+\end{DoxyParamCaption}
+)}}\label{_generator_8hpp_ae55920dd775b1fc766261874d3ce1292}
+
+
+Generate the graph and write it in the choosen file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em card} & the cardinality of the graph \\
+\hline
+{\em min} & the minimum cardinality of the vertices \\
+\hline
+{\em max} & the maximum cardinality of the vertices (it can be violated sometimes) \\
+\hline
+{\em filename} & the file in which the instance is written \\
+\hline
+\end{DoxyParams}
+The table of the unconnected vertices
+
+The number of unconnected vertices
+
+The table of the connected vertices
+
+The number of connected vertices
+
+The graph let i be the vertex considered graph\mbox{[}i\mbox{]}\mbox{[}0\mbox{]}, the number of vertices connected to i graph\mbox{[}i\mbox{]}\mbox{[}j\mbox{]}, j $>$ 0 a vertex connected to i\hypertarget{_generator_8hpp_a9c7458ee667dd48c439f37b05dde5ae5}{\index{Generator.\-hpp@{Generator.\-hpp}!string\-Is\-Int@{string\-Is\-Int}}
+\index{string\-Is\-Int@{string\-Is\-Int}!Generator.hpp@{Generator.\-hpp}}
+\subsubsection[{string\-Is\-Int}]{\setlength{\rightskip}{0pt plus 5cm}bool string\-Is\-Int (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{string}
+\end{DoxyParamCaption}
+)}}\label{_generator_8hpp_a9c7458ee667dd48c439f37b05dde5ae5}
+
+
+Check if the string is an integer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & the string to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the string is an integer, false otherwise 
+\end{DoxyReturn}

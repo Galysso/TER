@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Biobjective covering tree: Generator.hpp File Reference</title>
+<title>My Project: Generator.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Biobjective covering tree
+   <div id="projectname">My Project
    </div>
   </td>
  </tr>
@@ -59,6 +59,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -66,7 +67,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -77,14 +78,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Generator.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Generate a related graph G=(V,E)<br/>
+<p>Generate a connected graph G=(V,E)<br/>
  Exemple of data format<br/>
- Vi is the vertex indexes, VCij is the indexes of vertices related to Vi :<br/>
+ Vi is the vertex indexes, VCij is the indexes of vertices connected to Vi :<br/>
  |V|<br/>
  V0 |V0| VC00 VC01 VC02 VC03<br/>
  V1 |V1| VC10 VC11 VC12 VC13 VC14 VC15<br/>
@@ -95,10 +98,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#details">More...</a></p>
 
 <p><a href="_generator_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a9c7458ee667dd48c439f37b05dde5ae5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_generator_8hpp.html#a9c7458ee667dd48c439f37b05dde5ae5">stringIsInt</a> (char *string)</td></tr>
+<tr class="memdesc:a9c7458ee667dd48c439f37b05dde5ae5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the string is an integer.  <a href="#a9c7458ee667dd48c439f37b05dde5ae5">More...</a><br/></td></tr>
+<tr class="separator:a9c7458ee667dd48c439f37b05dde5ae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc63f521f1e30092125dcf0ab70ed1d1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc63f521f1e30092125dcf0ab70ed1d1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_generator_8hpp.html#abc63f521f1e30092125dcf0ab70ed1d1">checkParameters</a> (int argc, char *argv[])</td></tr>
+<tr class="memdesc:abc63f521f1e30092125dcf0ab70ed1d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">check the given parameters when the program is executed <br/></td></tr>
+<tr class="separator:abc63f521f1e30092125dcf0ab70ed1d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecdab0615f86c4856f97f9bdcc6daadd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_generator_8hpp.html#aecdab0615f86c4856f97f9bdcc6daadd">deleteElement</a> (int ind, int *size, int *table)</td></tr>
+<tr class="memdesc:aecdab0615f86c4856f97f9bdcc6daadd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete the element of a table at the given position and shift the table.  <a href="#aecdab0615f86c4856f97f9bdcc6daadd">More...</a><br/></td></tr>
+<tr class="separator:aecdab0615f86c4856f97f9bdcc6daadd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cc93be7f661b6cf75a07ce950bcea73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_generator_8hpp.html#a1cc93be7f661b6cf75a07ce950bcea73">deleteTwoElements</a> (int ind1, int ind2, int *size, int *table)</td></tr>
+<tr class="memdesc:a1cc93be7f661b6cf75a07ce950bcea73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete two elements of a table at the given positions and shift the table.  <a href="#a1cc93be7f661b6cf75a07ce950bcea73">More...</a><br/></td></tr>
+<tr class="separator:a1cc93be7f661b6cf75a07ce950bcea73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0589fa69308362769a28a6384083d6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_generator_8hpp.html#ab0589fa69308362769a28a6384083d6a">connect</a> (int V1, int V2, int **graph)</td></tr>
+<tr class="memdesc:ab0589fa69308362769a28a6384083d6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connect two vertices in the graph.  <a href="#ab0589fa69308362769a28a6384083d6a">More...</a><br/></td></tr>
+<tr class="separator:ab0589fa69308362769a28a6384083d6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a531412a36f7bd0a271d309b3af2f4ea9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_generator_8hpp.html#a531412a36f7bd0a271d309b3af2f4ea9">areConnected</a> (int V1, int V2, int **graph)</td></tr>
+<tr class="memdesc:a531412a36f7bd0a271d309b3af2f4ea9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if two vertices are connected.  <a href="#a531412a36f7bd0a271d309b3af2f4ea9">More...</a><br/></td></tr>
+<tr class="separator:a531412a36f7bd0a271d309b3af2f4ea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae55920dd775b1fc766261874d3ce1292"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_generator_8hpp.html#ae55920dd775b1fc766261874d3ce1292">generate</a> (int card, int min, int max, char *fileName)</td></tr>
+<tr class="memdesc:ae55920dd775b1fc766261874d3ce1292"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate the graph and write it in the choosen file.  <a href="#ae55920dd775b1fc766261874d3ce1292">More...</a><br/></td></tr>
+<tr class="separator:ae55920dd775b1fc766261874d3ce1292"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Generate a related graph G=(V,E)<br/>
+<div class="textblock"><p>Generate a connected graph G=(V,E)<br/>
  Exemple of data format<br/>
- Vi is the vertex indexes, VCij is the indexes of vertices related to Vi :<br/>
+ Vi is the vertex indexes, VCij is the indexes of vertices connected to Vi :<br/>
  |V|<br/>
  V0 |V0| VC00 VC01 VC02 VC03<br/>
  V1 |V1| VC10 VC11 VC12 VC13 VC14 VC15<br/>
@@ -109,17 +138,273 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <dl class="section author"><dt>Author</dt><dd>Jocelin C. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">1</td><td>: graph cardinality, |V| (at least 2) </td></tr>
-    <tr><td class="paramname">2</td><td>: minimum degree of vertices (at least 1) </td></tr>
-    <tr><td class="paramname">3</td><td>: maximum degree of vertices (at most |V|-1) </td></tr>
-    <tr><td class="paramname">4</td><td>: name of the generated file </td></tr>
+    <tr><td class="paramname">1</td><td>(card) : graph cardinality, |V| (card &gt; 1) </td></tr>
+    <tr><td class="paramname">2</td><td>(min) : minimum degree of vertices ((min &gt; 0) AND (min &lt; card)) </td></tr>
+    <tr><td class="paramname">3</td><td>(max) : maximum degree of vertices ((max &gt; min-1) AND (min &lt; card)) </td></tr>
+    <tr><td class="paramname">4</td><td>(file) : name of the generated file </td></tr>
   </table>
   </dd>
 </dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a531412a36f7bd0a271d309b3af2f4ea9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool areConnected </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>V1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>V2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int **&#160;</td>
+          <td class="paramname"><em>graph</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if two vertices are connected. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">V1</td><td>the first vertex </td></tr>
+    <tr><td class="paramname">V2</td><td>the seconde vertex </td></tr>
+    <tr><td class="paramname">graph</td><td>the graph </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if V1 and V2 are connected in the given graph, false otherwise </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab0589fa69308362769a28a6384083d6a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void connect </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>V1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>V2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int **&#160;</td>
+          <td class="paramname"><em>graph</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Connect two vertices in the graph. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">V1</td><td>the first vertex to connect </td></tr>
+    <tr><td class="paramname">V2</td><td>the second vertex to connect </td></tr>
+    <tr><td class="paramname">graph</td><td>the graph </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aecdab0615f86c4856f97f9bdcc6daadd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void deleteElement </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ind</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>table</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delete the element of a table at the given position and shift the table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ind</td><td>the index of the element to delete </td></tr>
+    <tr><td class="paramname">size</td><td>the size of the table </td></tr>
+    <tr><td class="paramname">table</td><td>the table </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1cc93be7f661b6cf75a07ce950bcea73"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void deleteTwoElements </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ind1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ind2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>table</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delete two elements of a table at the given positions and shift the table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ind1</td><td>the index of the first element to delete </td></tr>
+    <tr><td class="paramname">ind2</td><td>the index of the second element to delete </td></tr>
+    <tr><td class="paramname">size</td><td>the size of the table </td></tr>
+    <tr><td class="paramname">table</td><td>the table </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae55920dd775b1fc766261874d3ce1292"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void generate </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>card</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>max</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>fileName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generate the graph and write it in the choosen file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">card</td><td>the cardinality of the graph </td></tr>
+    <tr><td class="paramname">min</td><td>the minimum cardinality of the vertices </td></tr>
+    <tr><td class="paramname">max</td><td>the maximum cardinality of the vertices (it can be violated sometimes) </td></tr>
+    <tr><td class="paramname">filename</td><td>the file in which the instance is written </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The table of the unconnected vertices</p>
+<p>The number of unconnected vertices</p>
+<p>The table of the connected vertices</p>
+<p>The number of connected vertices</p>
+<p>The graph let i be the vertex considered graph[i][0], the number of vertices connected to i graph[i][j], j &gt; 0 a vertex connected to i</p>
+
+</div>
+</div>
+<a class="anchor" id="a9c7458ee667dd48c439f37b05dde5ae5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool stringIsInt </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>string</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if the string is an integer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">string</td><td>the string to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the string is an integer, false otherwise </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 22 2017 13:46:29 for Biobjective covering tree by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 23 2017 21:25:52 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

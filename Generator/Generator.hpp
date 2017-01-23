@@ -20,12 +20,59 @@
 #ifndef GENERATOR_HPP
 #define GENERATOR_HPP
 
+/*!
+ * \brief Check if the string is an integer
+ * \param string the string to check
+ * \return true if the string is an integer, false otherwise
+ */
 bool stringIsInt(char *string);
+
+/*!
+ * \brief check the given parameters when the program is executed
+ */
 void checkParameters(int argc, char *argv[]);
+
+/*!
+ * \brief Delete the element of a table at the given position and shift the table
+ * \param ind the index of the element to delete
+ * \param size the size of the table
+ * \param table the table
+ */
 void deleteElement(int ind, int *size, int *table);
+
+/*!
+ * \brief Delete two elements of a table at the given positions and shift the table
+ * \param ind1 the index of the first element to delete
+ * \param ind2 the index of the second element to delete
+ * \param size the size of the table
+ * \param table the table
+ */
 void deleteTwoElements(int ind1, int ind2, int *size, int *table);
+
+/*!
+ * \brief Connect two vertices in the graph
+ * \param V1 the first vertex to connect
+ * \param V2 the second vertex to connect
+ * \param graph the graph
+ */
 void connect(int V1, int V2, int **graph);
+
+/*!
+ * \brief Check if two vertices are connected
+ * \param V1 the first vertex
+ * \param V2 the seconde vertex
+ * \param graph the graph
+ * \return true if V1 and V2 are connected in the given graph, false otherwise
+ */
 bool areConnected(int V1, int V2, int **graph);
+
+/*!
+ * \brief Generate the graph and write it in the choosen file
+ * \param card the cardinality of the graph
+ * \param min the minimum cardinality of the vertices
+ * \param max the maximum cardinality of the vertices (it can be violated sometimes)
+ * \param filename the file in which the instance is written
+ */
 void generate(int card, int min, int max, char *fileName);
 
 #endif //GENERATOR_HPP

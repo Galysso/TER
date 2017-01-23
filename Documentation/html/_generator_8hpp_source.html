@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>Biobjective covering tree: Generator.hpp Source File</title>
+<title>My Project: Generator.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Biobjective covering tree
+   <div id="projectname">My Project
    </div>
   </td>
  </tr>
@@ -59,6 +59,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -67,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -82,10 +83,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="_generator_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#ifndef GENERATOR_HPP</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GENERATOR_HPP</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="_generator_8hpp.html#a9c7458ee667dd48c439f37b05dde5ae5">stringIsInt</a>(<span class="keywordtype">char</span> *<span class="keywordtype">string</span>);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_generator_8hpp.html#abc63f521f1e30092125dcf0ab70ed1d1">checkParameters</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_generator_8hpp.html#aecdab0615f86c4856f97f9bdcc6daadd">deleteElement</a>(<span class="keywordtype">int</span> ind, <span class="keywordtype">int</span> *size, <span class="keywordtype">int</span> *table);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_generator_8hpp.html#a1cc93be7f661b6cf75a07ce950bcea73">deleteTwoElements</a>(<span class="keywordtype">int</span> ind1, <span class="keywordtype">int</span> ind2, <span class="keywordtype">int</span> *size, <span class="keywordtype">int</span> *table);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_generator_8hpp.html#ab0589fa69308362769a28a6384083d6a">connect</a>(<span class="keywordtype">int</span> V1, <span class="keywordtype">int</span> V2, <span class="keywordtype">int</span> **graph);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="_generator_8hpp.html#a531412a36f7bd0a271d309b3af2f4ea9">areConnected</a>(<span class="keywordtype">int</span> V1, <span class="keywordtype">int</span> V2, <span class="keywordtype">int</span> **graph);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_generator_8hpp.html#ae55920dd775b1fc766261874d3ce1292">generate</a>(<span class="keywordtype">int</span> card, <span class="keywordtype">int</span> min, <span class="keywordtype">int</span> max, <span class="keywordtype">char</span> *fileName);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#endif //GENERATOR_HPP</span></div>
+<div class="ttc" id="_generator_8hpp_html_abc63f521f1e30092125dcf0ab70ed1d1"><div class="ttname"><a href="_generator_8hpp.html#abc63f521f1e30092125dcf0ab70ed1d1">checkParameters</a></div><div class="ttdeci">void checkParameters(int argc, char *argv[])</div><div class="ttdoc">check the given parameters when the program is executed </div><div class="ttdef"><b>Definition:</b> Generator.cpp:22</div></div>
+<div class="ttc" id="_generator_8hpp_html_ab0589fa69308362769a28a6384083d6a"><div class="ttname"><a href="_generator_8hpp.html#ab0589fa69308362769a28a6384083d6a">connect</a></div><div class="ttdeci">void connect(int V1, int V2, int **graph)</div><div class="ttdoc">Connect two vertices in the graph. </div><div class="ttdef"><b>Definition:</b> Generator.cpp:59</div></div>
+<div class="ttc" id="_generator_8hpp_html_a9c7458ee667dd48c439f37b05dde5ae5"><div class="ttname"><a href="_generator_8hpp.html#a9c7458ee667dd48c439f37b05dde5ae5">stringIsInt</a></div><div class="ttdeci">bool stringIsInt(char *string)</div><div class="ttdoc">Check if the string is an integer. </div><div class="ttdef"><b>Definition:</b> Generator.cpp:11</div></div>
+<div class="ttc" id="_generator_8hpp_html_aecdab0615f86c4856f97f9bdcc6daadd"><div class="ttname"><a href="_generator_8hpp.html#aecdab0615f86c4856f97f9bdcc6daadd">deleteElement</a></div><div class="ttdeci">void deleteElement(int ind, int *size, int *table)</div><div class="ttdoc">Delete the element of a table at the given position and shift the table. </div><div class="ttdef"><b>Definition:</b> Generator.cpp:52</div></div>
+<div class="ttc" id="_generator_8hpp_html_a1cc93be7f661b6cf75a07ce950bcea73"><div class="ttname"><a href="_generator_8hpp.html#a1cc93be7f661b6cf75a07ce950bcea73">deleteTwoElements</a></div><div class="ttdeci">void deleteTwoElements(int ind1, int ind2, int *size, int *table)</div><div class="ttdoc">Delete two elements of a table at the given positions and shift the table. </div><div class="ttdef"><b>Definition:</b> Generator.cpp:34</div></div>
+<div class="ttc" id="_generator_8hpp_html_a531412a36f7bd0a271d309b3af2f4ea9"><div class="ttname"><a href="_generator_8hpp.html#a531412a36f7bd0a271d309b3af2f4ea9">areConnected</a></div><div class="ttdeci">bool areConnected(int V1, int V2, int **graph)</div><div class="ttdoc">Check if two vertices are connected. </div><div class="ttdef"><b>Definition:</b> Generator.cpp:71</div></div>
+<div class="ttc" id="_generator_8hpp_html_ae55920dd775b1fc766261874d3ce1292"><div class="ttname"><a href="_generator_8hpp.html#ae55920dd775b1fc766261874d3ce1292">generate</a></div><div class="ttdeci">void generate(int card, int min, int max, char *fileName)</div><div class="ttdoc">Generate the graph and write it in the choosen file. </div><div class="ttdef"><b>Definition:</b> Generator.cpp:94</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jan 22 2017 13:46:29 for Biobjective covering tree by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 23 2017 21:25:52 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
