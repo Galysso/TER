@@ -1,9 +1,9 @@
 /*!
  * \file Generator.hpp
  * \author Jocelin C.
- * \brief Generate a related graph G=(V,E)\n
+ * \brief Generate a connected graph G=(V,E)\n
  * 			Exemple of data format\n
- * 			Vi is the vertex indexes, VCij is the indexes of vertices related to Vi :\n
+ * 			Vi is the vertex indexes, VCij is the indexes of vertices connected to Vi :\n
  * 				|V|\n
  * 				V0 |V0| VC00 VC01 VC02 VC03\n
  * 				V1 |V1| VC10 VC11 VC12 VC13 VC14 VC15\n
@@ -22,7 +22,10 @@
 
 bool stringIsInt(char *string);
 void checkParameters(int argc, char *argv[]);
+void deleteElement(int ind, int *size, int *table);
+void deleteTwoElements(int ind1, int ind2, int *size, int *table);
+void connect(int V1, int V2, int **graph);
+bool areConnected(int V1, int V2, int **graph);
 void generate(int card, int min, int max, char *fileName);
-//~ int selectVertex(int card, 
 
 #endif //GENERATOR_HPP
