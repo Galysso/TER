@@ -7,6 +7,3 @@ LDFLAGS =
 all: Generator
 
 main: $(SOURCES:.cpp=.o) $(LDFLAGS)
-
-clean: 
-	rm ./*.o
