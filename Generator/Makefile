@@ -1,5 +1,5 @@
 CXX = g++
-SOURCES =
+SOURCES = Generator.cpp
 CFLAGS = -Wall -g -O3
 LDFLAGS =
 .PHONY = clean

@@ -224,14 +224,6 @@ void generate(int card, int min, int max, char *fileName) {
 			if (graph[Vj][0] >= max) {
 				deleteElement(j, &nbVertices, vertices);
 			}
-			
-			if (graph[Vi][0] > max) {
-				cout << "Vi=" << Vi << endl;
-				cout << "COCO" << endl;
-			}
-			if (graph[Vj][0] > max) {
-				//~ cout << "COCO" << endl;
-			}
 		}
 	}
 	
@@ -260,10 +252,9 @@ void generate(int card, int min, int max, char *fileName) {
 	file.close();
 }
 
-/// PROBLEMES :
-/// - NE FINIT PAS TOUJOURS (quand min et max sont proches)
-/// - LES SOMMETS D'INDICES PLUS ELEVES ONT EN MOYENNE UNE CARDINALITE PLUS ELEVEE
-/// - LA MOYENNE DES CARDINALITES DES SOMMETS EST PLUS ELEVEE QUE CELLE QUE L'ON DEVRAIT AVOIR
+/* pour un grand écart de cardinalités, les cardinalités
+ * min et max sont proches du min et du max réellement possibles
+ */
 int main(int argc, char *argv[]) {
 	checkParameters(argc, argv);
 	generate(atoi(argv[1]), atoi(argv[2]), atoi(argv[3]), argv[4]);

@@ -23,6 +23,35 @@ void bubbleSort(int *tab, int size) {
 	} while (!sorted);
 }
 
+void bubbleSortVertices(int *v, bool *b, int *w, int size) {
+	bool sorted;
+	int j;
+	int tmp;
+	bool btmp;
+
+	do {
+		sorted = true;
+		for (j = 1; j < size; ++j) {
+			if (v[j-1] > v[j]) {
+				sorted = false;
+				tmp = v[j];
+				v[j] = v[j-1];
+				v[j-1] = tmp;
+
+				btmp = b[j];
+				b[j] = b[j-1];
+				b[j-1] = btmp;
+
+				tmp = w[j];
+				w[j] = w[j-1];
+				w[j-1] = tmp;
+				
+			}
+		}
+		--size;
+	} while (!sorted);
+}
+
 int dichotomySearch(int *tab, int size, int val) {
 	int ind;
 
