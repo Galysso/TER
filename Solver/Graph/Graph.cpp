@@ -12,7 +12,6 @@ Graph::Graph(string fileName) {
 	ifstream f(fileName.c_str());
 
 	if (f) {
-		bool sorted;
 		int i, j;
 		int tmp, vi, vj, cardG, cardV;
 		f >> cardG;
@@ -45,6 +44,8 @@ Graph::Graph(string fileName) {
 			}
 			bubbleSortVertices(_vertices[i], _b[i], _w[i], cardV);
 		}
+
+		f.close();
 	} else {
 		cout << "Fichier inexistant" << endl;
 	}

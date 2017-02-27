@@ -101,10 +101,9 @@ void generate(int card, int min, int max, char *fileName) {
 	//~ srand(5);
 	srand(time(NULL));
 	
-	file << card << endl;
-	
-	int ind, i, j, Vi, Vj, cpt;
-	
+	int ind, i, j, Vi, Vj, cpt, cardE;
+
+	cardE = 0;
 	/** The number of edges to add to a covering tree of the graph */
 	int nbEdges = min + ((max-min)/4)*card;
 	/** The table of the unconnected vertices */
@@ -138,6 +137,7 @@ void generate(int card, int min, int max, char *fileName) {
 	Vi = unconnected[i];
 	Vj = unconnected[j];
 	connect(Vi, Vj, graph);
+	++cardE;
 	deleteTwoElements(i, j, &nbUnconnected, unconnected);
 	vertices[0] = Vi;
 	vertices[1] = Vj;
@@ -149,6 +149,7 @@ void generate(int card, int min, int max, char *fileName) {
 		Vi = unconnected[i];
 		Vj = vertices[j];
 		connect(Vi, Vj, graph);
+		++cardE;
 		deleteElement(i, &nbUnconnected, unconnected);
 		if (graph[Vj][0] >= max) {
 			deleteElement(j, &nbVertices, vertices);
@@ -163,6 +164,7 @@ void generate(int card, int min, int max, char *fileName) {
 		Vi = unconnected[0];
 		Vj = vertices[j];
 		connect(Vi, Vj, graph);
+		++cardE;
 		deleteElement(0, &nbUnconnected, unconnected);
 		vertices[nbVertices] = Vi;
 		++nbVertices;
@@ -189,6 +191,7 @@ void generate(int card, int min, int max, char *fileName) {
 				Vi = vertices[i];
 			} else {
 				connect(Vi, Vj, graph);
+				++cardE;
 				--nbEdges;
 				if (graph[Vj][0] >= max) {
 					deleteElement(j, &nbVertices, vertices);
@@ -217,6 +220,7 @@ void generate(int card, int min, int max, char *fileName) {
 			deleteElement(i, &nbVertices, vertices);
 		} else {
 			connect(Vi, Vj, graph);
+			++cardE;
 			--nbEdges;
 			if (graph[Vi][0] >= max) {
 				deleteElement(i, &nbVertices, vertices);
@@ -231,6 +235,7 @@ void generate(int card, int min, int max, char *fileName) {
 	int minCard = max;
 	int maxCard = 0;
 	// We write in the file
+	file << card << " " << cardE << endl;
 	for (i = 0; i < card; ++i) {
 		file << i << " ";
 		moy = moy + graph[i][0];
