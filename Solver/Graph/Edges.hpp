@@ -23,6 +23,7 @@ class Edges {
 		int nE0;
 		int nE1;
 		int card;
+		int *cardV;	// The cardinality of each vertex
 
 	public:
 		Edges(string fileName);
@@ -35,6 +36,7 @@ class Edges {
 		int getNE1();
 		int getNEX();
 		int getCard();
+		int getCardV(int i);
 
 		void showDebug();
 };

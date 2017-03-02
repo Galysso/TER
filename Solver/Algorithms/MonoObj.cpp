@@ -4,6 +4,9 @@
 MonoObj::MonoObj(Edges *e) {
 	edges = e;
 	roots = new int [e->getCard()];
+	tree = new Edge * [e->getCard()-1];
+	b = 0;
+	w = 0;
 }
 
 MonoObj::~MonoObj() {
@@ -27,25 +30,105 @@ void MonoObj::setRoot(int indV, int ind) {
 	roots[indV] = ind;
 }
 
-Edge **MonoObj::calculateBl() {
+void MonoObj::calculateBl() {
+	b = 0;
+	w = 0;
 	int card = edges->getCard();
 	int nE0 = edges->getNE0();
 	int nE1 = edges->getNE1();
 	int nEX = edges->getNEX();
-	Edge **EX = new Edge * [nEX];
-	Edge **tree = new Edge * [card-1];
 	Edge **E0 = edges->getE0();
 	Edge **E1 = edges->getE1();
-	copy(E1, E1+nE1, EX);
-	copy(E0, E0+nE0, EX+nE1);
 
 	Edge *e;
-
 
 	int cpt = 0;
 	int i = 0;
 
+	for (i = 0; i < card; ++i) {
+		roots[i] = i;
+	}
 
+	i = 0;
+	while ((i < nE1) && (cpt < card-1)) {
+		e = E1[i];
+		if (getRoot(e->v1) != getRoot(e->v2)) {
+			setRoot(e->v2, e->v1);
+			tree[cpt] = e;
+			++cpt;
+			b = b + e->b;
+			w = w + e->w;
+		}
+		++i;
+	}
+	i = 0;
+	while (cpt < card-1) {
+		e = E0[i];
+		if (getRoot(e->v1) != getRoot(e->v2)) {
+			setRoot(e->v2, e->v1);
+			tree[cpt] = e;
+			++cpt;
+			b = b + e->b;
+			w = w + e->w;
+		}
+		++i;
+	}
+}
+
+void MonoObj::calculateBlPlus() {
+	b = 0;
+	w = 0;
+	int card = edges->getCard();
+	int nE0 = edges->getNE0();
+	int nE1 = edges->getNE1();
+	int nEX = edges->getNEX();
+	Edge **E0 = edges->getE0();
+	Edge **E1 = edges->getE1();
+
+	Edge *e;
+
+	int cpt = 0;
+	int i0, i1;
+
+	for (i0 = 0; i0 < card; ++i0) {
+		roots[i0] = i0;
+	}
+
+	cpt = 0;
+	i0 = 0;
+	i1 = 0;
+	while (cpt < card-1) {
+		if (E1[i1]->w < E0[i0]->w) {
+			e = E1[i1];
+			++i1;
+		} else {
+			e = E0[i0];
+			++i0;
+		}
+		if (getRoot(e->v1) != getRoot(e->v2)) {
+			setRoot(e->v2, e->v1);
+			tree[cpt] = e;
+			++cpt;
+			b = b + e->b;
+			w = w + e->w;
+		}
+	}
+}
+
+void MonoObj::calculateBu() {
+	b = 0;
+	w = 0;
+	int card = edges->getCard();
+	int nE0 = edges->getNE0();
+	int nE1 = edges->getNE1();
+	int nEX = edges->getNEX();
+	Edge **E0 = edges->getE0();
+	Edge **E1 = edges->getE1();
+
+	Edge *e;
+
+	int cpt = 0;
+	int i = 0;
 
 	for (i = 0; i < card; ++i) {
 		roots[i] = i;
@@ -53,110 +136,59 @@ Edge **MonoObj::calculateBl() {
 
 	cpt = 0;
 	i = 0;
-	while (cpt < card-1) {
-		e = EX[i];
+	while ((i < nE0) && (cpt < card-1)) {
+		e = E0[i];
 		if (getRoot(e->v1) != getRoot(e->v2)) {
 			setRoot(e->v2, e->v1);
 			tree[cpt] = e;
 			++cpt;
+			b = b + e->b;
+			w = w + e->w;
 		}
 		++i;
 	}
 
-	cout << endl;
-	for (i = 0; i < card-1; ++i) {
-		e = tree[i];
-		cout << i << ": " << e->v1 << ", " << e->v2 << " | " << e->b << ", " << e->w << endl;
-	}
-
-	return tree;
-}
-
-Edge **MonoObj::calculateBlPlus() {
-	int card = edges->getCard();
-	int nE0 = edges->getNE0();
-	int nE1 = edges->getNE1();
-	int nEX = edges->getNEX();
-	Edge **EX = new Edge * [nEX];
-	Edge **tree = new Edge * [card-1];
-	Edge **E0 = edges->getE0();
-	Edge **E1 = edges->getE1();
-	fusion(E0, E1, EX, nE0, nE1);
-
-	Edge *e;
-
-
-	int cpt = 0;
-	int i = 0;
-
-
-
-	for (i = 0; i < card; ++i) {
-		roots[i] = i;
-	}
-
-	cpt = 0;
 	i = 0;
 	while (cpt < card-1) {
-		e = EX[i];
+		e = E1[i];
 		if (getRoot(e->v1) != getRoot(e->v2)) {
 			setRoot(e->v2, e->v1);
 			tree[cpt] = e;
 			++cpt;
+			b = b + e->b;
+			w = w + e->w;
 		}
 		++i;
 	}
+}
 
-	cout << endl;
-	for (i = 0; i < card-1; ++i) {
-		e = tree[i];
-		cout << i << ": " << e->v1 << ", " << e->v2 << " | " << e->b << ", " << e->w << endl;
-	}
+int MonoObj::getB() {
+	return b;
+}
 
+int MonoObj::getW() {
+	return w;
+}
+
+Edge **MonoObj::getTree() {
 	return tree;
 }
 
-Edge **MonoObj::calculateBu() {
+
+void MonoObj::showDebug() {
 	int card = edges->getCard();
-	int nE0 = edges->getNE0();
-	int nE1 = edges->getNE1();
-	int nEX = edges->getNEX();
-	Edge **EX = new Edge * [nEX];
-	Edge **tree = new Edge * [card-1];
-	Edge **E0 = edges->getE0();
-	Edge **E1 = edges->getE1();
-	copy(E0, E0+nE0, EX);
-	copy(E1, E1+nE1, EX+nE0);
-
 	Edge *e;
-
-
-	int cpt = 0;
-	int i = 0;
-
-
-
-	for (i = 0; i < card; ++i) {
-		roots[i] = i;
-	}
-
-	cpt = 0;
-	i = 0;
-	while (cpt < card-1) {
-		e = EX[i];
-		if (getRoot(e->v1) != getRoot(e->v2)) {
-			setRoot(e->v2, e->v1);
-			tree[cpt] = e;
-			++cpt;
-		}
-		++i;
-	}
-
-	cout << endl;
-	for (i = 0; i < card-1; ++i) {
+	for (int i = 0; i < card-1; ++i) {
 		e = tree[i];
-		cout << i << ": " << e->v1 << ", " << e->v2 << " | " << e->b << ", " << e->w << endl;
+		cout << i << ": {" << e->v1 << "," << e->v2 << "} " << e->b << ", " << e->w << endl;
 	}
-
-	return tree;
 }
+
+// 1 à 2
+// 2 à 3
+// 3 à 4
+// 4 à 5
+
+
+// listes d'arrêtes pour chaque sommet
+

@@ -6,7 +6,10 @@
 class MonoObj {
 	private:
 		Edges *edges;
+		Edge **tree;
 		int *roots;
+		int b;
+		int w;
 
 	private:
 		int getRoot(int indV);
@@ -15,9 +18,14 @@ class MonoObj {
 	public:
 		MonoObj(Edges *e);
 		~MonoObj();
-		Edge **calculateBl();
-		Edge **calculateBlPlus();
-		Edge **calculateBu();
+		void calculateBl();
+		void calculateBlPlus();
+		void calculateBu();
+		int getB();
+		int getW();
+		Edge **getTree();
+
+		void showDebug();
 };
 
 #endif

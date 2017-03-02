@@ -1,5 +1,5 @@
 CXX = g++
-SOURCES = Graph/Graph.cpp Graph/Edges.cpp Functions/Functions.cpp Algorithms/MonoObj.cpp
+SOURCES = Graph/Edges.cpp Functions/Functions.cpp Algorithms/MonoObj.cpp Algorithms/Naive.cpp
 CFLAGS = -Wall -g -Ofast
 LDFLAGS =
 .PHONY = clean
@@ -12,3 +12,4 @@ clean:
 	rm main
 	rm Graph/*.o
 	rm Functions/*.o
+	rm Algorithms/*.o

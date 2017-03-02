@@ -13,27 +13,29 @@ Edges::Edges(string fileName) {
 
 	if (f) {
 		int i, j;
-		int vi, vj, nEX, cardG, cardV, tmp;
+		int vi, vj, nEX, cardGraph, nEdges, tmp;
 
-		f >> cardG;
+		f >> cardGraph;
 		f >> nEX;
 
-		card = cardG;
+		card = cardGraph;
 
 		E0 = new Edge * [nEX];
 		E1 = new Edge * [nEX];
 		nE0 = 0;
 		nE1 = 0;
+		cardV = new int [cardGraph];
 		Edge *e;
 
-		for (i = 0; i < cardG; ++i) {
+		for (i = 0; i < cardGraph; ++i) {
 			f >> vi;
-			f >> cardV;
-			for (j = 0; j < cardV; ++j) {
+			f >> nEdges;
+			cardV[vi] = nEdges;
+			for (j = 0; j < nEdges; ++j) {
 				f >> vj;
 				if (vj > vi) {
 					e = new Edge;
-					e->w = 1 + rand() % cardG;
+					e->w = 1 + rand() % cardGraph;
 					e->v1 = vi;
 					e->v2 = vj;
 					if ((rand()%2) == 0) {
@@ -67,6 +69,14 @@ Edges::Edges() {
 	Edge *e;
 	E0 = new Edge * [5];
 	E1 = new Edge * [6];
+	cardV = new int [7];
+	cardV[0] = 2;
+	cardV[1] = 5;
+	cardV[2] = 3;
+	cardV[3] = 3;
+	cardV[4] = 3;
+	cardV[5] = 4;
+	cardV[6] = 2;
 
 	nE0 = 5;
 	nE1 = 6;
@@ -180,6 +190,10 @@ int Edges::getNEX() {
 
 int Edges::getCard() {
 	return card;
+}
+
+int Edges::getCardV(int i) {
+	return cardV[i];
 }
 
 void Edges::showDebug() {
