@@ -177,11 +177,16 @@ Edge **MonoObj::getTree() {
 
 void MonoObj::showDebug() {
 	int card = edges->getCard();
+	int sum = 0;
+	int bools = 0;
 	Edge *e;
 	for (int i = 0; i < card-1; ++i) {
 		e = tree[i];
 		cout << i << ": {" << e->v1 << "," << e->v2 << "} " << e->b << ", " << e->w << endl;
+		sum = sum + e->w;
+		bools = bools + e->b;
 	}
+	cout << "Bi=(" << sum << "," << bools << ")" << endl;
 }
 
 // 1 à 2

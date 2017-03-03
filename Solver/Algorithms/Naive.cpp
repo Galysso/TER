@@ -35,11 +35,11 @@ void Naive::calculateToAdd() {
 	}
 
 
-	cout << endl << "to add :" << endl;
+	/*cout << endl << "to add :" << endl;
 	for (i = 0; i < nToAdd; ++i) {
 		e = toAdd[i];
 		cout << i << ": {" << e->v1 << "," << e->v2 << "} " << e->b << ", " << e->w << endl;
-	}
+	}*/
 }
 
 void Naive::calculateNear() {
@@ -183,7 +183,7 @@ bool Naive::edgesInCycle(Edge **cycle, int &n, int n2, bool &found, int v0, int 
 	}
 }
 
-void Naive::calculateSolutions() {	int sum; int bools;
+void Naive::calculateSolutions() {
 	Edge *e, *minE0, *minE1;
 	int minCost;
 	bool minSwapFound;
@@ -236,7 +236,7 @@ void Naive::calculateSolutions() {	int sum; int bools;
 			}
 		}
 		if (minSwapFound) {
-			cout << endl << "min swap : {" << minE0->v1 << "," << minE0->v2 << "} <-> {" << minE1->v1 << "," << minE1->v2 << "}" << endl;
+			cout << endl << "min swap : {" << minE0->v1 << "," << minE0->v2 << "} <-> {" << minE1->v1 << "," << minE1->v2 << "} c=" << minCost << endl;
 			swap(minE0, minE1);
 			Si[nSol] = sol;
 			++nSol;
@@ -248,8 +248,8 @@ void Naive::calculateSolutions() {	int sum; int bools;
 
 
 /////////////////////////////////
-		sum = 0;
-		bools = 0;
+		int sum = 0;
+		int bools = 0;
 		cout << endl << "next sol :" << endl;
 		for (int i = 0; i < edges->getCard()-1; ++i) {
 			e = sol[i];
