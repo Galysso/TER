@@ -12,13 +12,15 @@ int main(int argc, char *argv[]) {
 	g.showGraph();*/
 
 	//Edges edges("../Instances/jouetManuel11");
-	//Edges edges("../Instances/jouet100");
+	//Edges edges("../Instances/test100");
 	Edges edges;
 	cout << "graph :" << endl;
 	edges.showDebug();
 	Naive naive(&edges);
+	
+	start = clock();
 	naive.calculateSolutions();
-
+	stop = clock();
 
 
 	/*MonoObj mono(&edges);
@@ -26,13 +28,13 @@ int main(int argc, char *argv[]) {
 	for (int i = 0; i < 10000000; ++i) {
 		mono.calculateBu();
 	}
-	stop = clock();
+	stop = clock();*/
 
-	cout << "temps : " << (double)(stop-start)/CLOCKS_PER_SEC << "s" << endl;
+	cout << endl << "temps : " << (double)(stop-start)/CLOCKS_PER_SEC << "s" << endl;
 
-	mono.showDebug();
+	/*mono.showDebug();
 	cout << "b=" << mono.getB() << endl;
 	cout << "w=" << mono.getW() << endl;*/
 
-	cout << "COCO" << endl;
+	cout << endl<< "COCO" << endl;
 }

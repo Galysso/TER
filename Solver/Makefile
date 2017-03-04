@@ -1,5 +1,5 @@
 CXX = g++
-SOURCES = Graph/Edges.cpp Functions/Functions.cpp Algorithms/MonoObj.cpp Algorithms/Naive.cpp
+SOURCES = Graph/Edges.cpp Functions/Functions.cpp Algorithms/MonoObj.cpp Algorithms/Naive.cpp Algorithms/MGabowTarjan.cpp
 CFLAGS = -Wall -g -Ofast
 LDFLAGS =
 .PHONY = clean
