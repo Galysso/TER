@@ -185,9 +185,14 @@ void Naive::calculateSolutions() {
 	Edge *e, *minE0, *minE1;
 	int minCost;
 	bool minSwapFound;
+	int sum, bools;
 
 	MonoObj mono(edges);
 	mono.calculateBl();
+	//mono.calculateBlPlu();
+	sum = mono.getW();
+	bools = mono.getB();
+	cout << "Bi=(" << sum << "," << bools << ")" << endl;
 	/*cout << endl << "first sol :" << endl;
 	mono.showDebug();*/
 
@@ -254,8 +259,10 @@ void Naive::calculateSolutions() {
 			//cout << i << ": {" << e->v1 << "," << e->v2 << "} " << e->b << ", " << e->w << endl;
 			bools = bools + e->b;
 			sum = sum + e->w;
-		}
-		cout << "Bi=(" << sum << "," << bools << ")" << endl;*/
+		}*/
+		sum = sum - minE1->w + minE0->w;
+		bools = bools - minE1->b + minE0->b;
+		cout << "Bi=(" << sum << "," << bools << ")" << endl;
 	}
 
 

@@ -12,8 +12,8 @@ int main(int argc, char *argv[]) {
 	g.showGraph();*/
 
 	//Edges edges("../Instances/jouetManuel11");
-	//Edges edges("../Instances/test100");
-	Edges edges;
+	Edges edges("../Instances/test1000");
+	//Edges edges;
 	cout << "graph :" << endl;
 	edges.showDebug();
 	Naive naive(&edges);
