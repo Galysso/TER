@@ -156,15 +156,16 @@ void Naive::calculateSolutions() {
 	int sum, bools;
 
 	MonoObj mono(edges);
-	//mono.calculateBl();
-	mono.calculateBlPlus();
+	//mono.calculateBlPlus();
+	mono.calculateBl();
 	sum = mono.getW();
 	bools = mono.getB();
 	cout << "Bi=(" << sum << "," << bools << ")" << endl;
 	/*cout << endl << "first sol :" << endl;
 	mono.showDebug();*/
 
-	sol = mono.getTree();
+	//sol = mono.getBlPlus();
+	sol = mono.getBl();
 	calculateNear();
 	calculateToAdd();
 

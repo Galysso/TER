@@ -4,7 +4,9 @@
 MonoObj::MonoObj(Edges *e) {
 	edges = e;
 	roots = new int [e->getCard()];
-	tree = new Edge * [e->getCard()-1];
+	Bl = new Edge * [e->getCard()-1];
+	BlPlus = new Edge * [e->getCard()-1];
+	Bu = new Edge * [e->getCard()-1];
 	b = 0;
 	w = 0;
 }
@@ -54,7 +56,7 @@ void MonoObj::calculateBl() {
 		e = E1[i];
 		if (getRoot(e->v1) != getRoot(e->v2)) {
 			setRoot(e->v2, e->v1);
-			tree[cpt] = e;
+			Bl[cpt] = e;
 			++cpt;
 			b = b + e->b;
 			w = w + e->w;
@@ -66,7 +68,7 @@ void MonoObj::calculateBl() {
 		e = E0[i];
 		if (getRoot(e->v1) != getRoot(e->v2)) {
 			setRoot(e->v2, e->v1);
-			tree[cpt] = e;
+			Bl[cpt] = e;
 			++cpt;
 			b = b + e->b;
 			w = w + e->w;
@@ -98,16 +100,21 @@ void MonoObj::calculateBlPlus() {
 	i0 = 0;
 	i1 = 0;
 	while (cpt < card-1) {
-		if (E1[i1]->w < E0[i0]->w) {
+		if (i0 < nE0) {
+			if ((i1 < nE1) && (E1[i1]->w < E0[i0]->w)) {
+				e = E1[i1];
+				++i1;
+			} else {
+				e = E0[i0];
+				++i0;
+			}
+		} else {
 			e = E1[i1];
 			++i1;
-		} else {
-			e = E0[i0];
-			++i0;
 		}
 		if (getRoot(e->v1) != getRoot(e->v2)) {
 			setRoot(e->v2, e->v1);
-			tree[cpt] = e;
+			BlPlus[cpt] = e;
 			++cpt;
 			b = b + e->b;
 			w = w + e->w;
@@ -140,7 +147,7 @@ void MonoObj::calculateBu() {
 		e = E0[i];
 		if (getRoot(e->v1) != getRoot(e->v2)) {
 			setRoot(e->v2, e->v1);
-			tree[cpt] = e;
+			BlPlus[cpt] = e;
 			++cpt;
 			b = b + e->b;
 			w = w + e->w;
@@ -153,7 +160,7 @@ void MonoObj::calculateBu() {
 		e = E1[i];
 		if (getRoot(e->v1) != getRoot(e->v2)) {
 			setRoot(e->v2, e->v1);
-			tree[cpt] = e;
+			BlPlus[cpt] = e;
 			++cpt;
 			b = b + e->b;
 			w = w + e->w;
@@ -170,8 +177,16 @@ int MonoObj::getW() {
 	return w;
 }
 
-Edge **MonoObj::getTree() {
-	return tree;
+Edge **MonoObj::getBl() {
+	return Bl;
+}
+
+Edge **MonoObj::getBlPlus() {
+	return BlPlus;
+}
+
+Edge **MonoObj::getBu() {
+	return Bu;
 }
 
 
@@ -181,7 +196,7 @@ void MonoObj::showDebug() {
 	int bools = 0;
 	Edge *e;
 	for (int i = 0; i < card-1; ++i) {
-		e = tree[i];
+		e = Bl[i];
 		cout << i << ": {" << e->v1 << "," << e->v2 << "} " << e->b << ", " << e->w << endl;
 		sum = sum + e->w;
 		bools = bools + e->b;

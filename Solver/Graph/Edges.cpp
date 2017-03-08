@@ -58,7 +58,9 @@ Edges::Edges(string fileName) {
 		/*cout << endl << endl << endl;
 		showDebug();*/
 
+		cout << "bubbleSort 0" << endl;
 		bubbleSort(E0, nE0);
+		cout << "bubbleSort 1" << endl;
 		bubbleSort(E1, nE1);
 	} else {
 		cout << "Fichier inexistant" << endl;

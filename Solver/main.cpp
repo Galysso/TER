@@ -15,21 +15,13 @@ int main(int argc, char *argv[]) {
 	Edges edges;
 	cout << "graph :" << endl;
 	edges.showDebug();
-	//Naive naive(&edges);
-	MGabowTarjan mGaTar(&edges);
+	Naive naive(&edges);
+	//MGabowTarjan mGaTar(&edges);
 	
 	start = clock();
-	//naive.calculateSolutions();
-	mGaTar.calculateSolutions();
+	naive.calculateSolutions();
+	//mGaTar.calculateSolutions();
 	stop = clock();
-
-
-	/*MonoObj mono(&edges);
-	start = clock();
-	for (int i = 0; i < 10000000; ++i) {
-		mono.calculateBu();
-	}
-	stop = clock();*/
 
 	cout << endl << "temps : " << (double)(stop-start)/CLOCKS_PER_SEC << "s" << endl;
 

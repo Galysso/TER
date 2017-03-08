@@ -28,6 +28,7 @@ void bubbleSort(Edge **edges, int size) {
 	bool sorted;
 	int j;
 	Edge *tmp;
+	int lastSwap = 0;
 
 	do {
 		sorted = true;
@@ -37,9 +38,10 @@ void bubbleSort(Edge **edges, int size) {
 				edges[j] = edges[j-1];
 				edges[j-1] = tmp;
 				sorted = false;
+				lastSwap = j;
 			}
 		}
-		--size;
+		size = lastSwap;
 	} while (!sorted);
 }
 
