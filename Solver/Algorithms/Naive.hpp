@@ -13,8 +13,6 @@ class Naive {
 		Edge ***near;	// Matrice des arêtes reliées à un sommet dans la solution courante
 		int *nNear;		// Matrice des nombre d'arêtes reliés à un sommet dans la solution courante
 		int nSol;
-		Edge **cycle;	// Liste des arêtes dans le dernier cycle trouvé
-		int nCycle;
 		bool found;
 
 	private:
@@ -25,7 +23,7 @@ class Naive {
 		void deleteEdge(Edge *e);
 		Edge *minimalSwapWith(Edge *e0);
 		// OPTIMISATION POSSIBLE (Ne plus utiliser de cycle, simplement considérer chaque arête et choisir la meilleure en descendant)
-		bool edgesInCycle(Edge **cycle, int n, int v0, int v1, int v2);
+		bool edgesInCycle(Edge *&minEdge, int v0, int v1, int v2);
 
 	public:
 		Naive(Edges *edges);

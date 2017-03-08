@@ -1,6 +1,7 @@
 #include "Graph/Edges.hpp"
 #include "Algorithms/MonoObj.hpp"
 #include "Algorithms/Naive.hpp"
+#include "Algorithms/MGabowTarjan.hpp"
 
 #include <iostream>
 
@@ -8,18 +9,18 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 	clock_t start, stop;
-	/*Graph g("../Instances/petitJouet10");
-	g.showGraph();*/
 
 	//Edges edges("../Instances/jouetManuel11");
-	Edges edges("../Instances/test1000");
-	//Edges edges;
+	//Edges edges("../Instances/test1000");
+	Edges edges;
 	cout << "graph :" << endl;
 	edges.showDebug();
-	Naive naive(&edges);
+	//Naive naive(&edges);
+	MGabowTarjan mGaTar(&edges);
 	
 	start = clock();
-	naive.calculateSolutions();
+	//naive.calculateSolutions();
+	mGaTar.calculateSolutions();
 	stop = clock();
 
 

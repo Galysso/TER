@@ -8,6 +8,8 @@ class MGabowTarjan {
 		Edges *edges;
 		
 	public:
+		MGabowTarjan(Edges *edges);
+		void calculateSolutions();
 	
 };
 

@@ -7,7 +7,6 @@ Naive::Naive(Edges *edges) {
 	toAdd = new Edge * [edges->getNE0()];
 	near = new Edge ** [edges->getCard()];
 	nNear = new int [edges->getCard()];
-	cycle = new Edge * [edges->getCard()-1];
 }
 
 void Naive::calculateToAdd() {
@@ -34,13 +33,6 @@ void Naive::calculateToAdd() {
 			++nToAdd;
 		}
 	}
-
-
-	/*cout << endl << "to add :" << endl;
-	for (i = 0; i < nToAdd; ++i) {
-		e = toAdd[i];
-		cout << i << ": {" << e->v1 << "," << e->v2 << "} " << e->b << ", " << e->w << endl;
-	}*/
 }
 
 void Naive::calculateNear() {
@@ -115,39 +107,14 @@ void Naive::deleteEdge(Edge *e) {
 
 Edge *Naive::minimalSwapWith(Edge *e0) {
 	Edge *minEdge = NULL;
-	int minVal;
-	
 	found = false;
-	edgesInCycle(cycle, 0, e0->v2, e0->v1, e0->v2);
-
-	int i = 0;
-	while ((i < nCycle) && (!cycle[i]->b)) {
-		++i;
-	}
-	if (i < nCycle) {
-		minEdge = cycle[i];
-		minVal = e0->w - cycle[i]->w;
-	}
-
-	for (i; i < nCycle; ++i) {
-		if ((cycle[i]->b) && (minVal > e0->w - cycle[i]->w)) {
-			minVal = e0->w - cycle[i]->w;
-			minEdge = cycle[i];
-		}
-	}
+	
+	edgesInCycle(minEdge, e0->v2, e0->v1, e0->v2);
 
 	return minEdge;
-
-	/*cout << endl << "edges in cycle (" << e0->v1 << "," << e0->v2 << ") :" << endl;
-	cout << "n=" << n << endl;
-	Edge *e;
-	for (int i = 0; i < n; ++i) {
-		e = cycle[i];
-		cout << i << ": {" << e->v1 << "," << e->v2 << "} " << e->b << ", " << e->w << endl;
-	}*/
 }
 
-bool Naive::edgesInCycle(Edge **cycle, int n, int v0, int v1, int v2) {
+bool Naive::edgesInCycle(Edge *&minEdge, int v0, int v1, int v2) {
 
 	if (found) {
 		return false;
@@ -167,12 +134,13 @@ bool Naive::edgesInCycle(Edge **cycle, int n, int v0, int v1, int v2) {
 			if (v1Next == v2) {
 				foundHere = true;
 				found = true;
-				nCycle = n+1;
-				cycle[n] = near[v1][i];
+				if (e->b) {
+					minEdge = e;
+				}
 			} else if (v0 != v1Next) {
-				foundHere = edgesInCycle(cycle, n+1, v1, v1Next, v2);
-				if (foundHere) {
-					cycle[n] = e;
+				foundHere = edgesInCycle(minEdge, v1, v1Next, v2);
+				if (foundHere && e->b && ((minEdge == NULL) || (e->w > minEdge->w))) {
+					minEdge = e;
 				}
 			}
 			++i;
@@ -188,8 +156,8 @@ void Naive::calculateSolutions() {
 	int sum, bools;
 
 	MonoObj mono(edges);
-	mono.calculateBl();
-	//mono.calculateBlPlu();
+	//mono.calculateBl();
+	mono.calculateBlPlus();
 	sum = mono.getW();
 	bools = mono.getB();
 	cout << "Bi=(" << sum << "," << bools << ")" << endl;
@@ -256,7 +224,7 @@ void Naive::calculateSolutions() {
 		cout << endl << "next sol :" << endl;
 		for (int i = 0; i < edges->getCard()-1; ++i) {
 			e = sol[i];
-			//cout << i << ": {" << e->v1 << "," << e->v2 << "} " << e->b << ", " << e->w << endl;
+			cout << i << ": {" << e->v1 << "," << e->v2 << "} " << e->b << ", " << e->w << endl;
 			bools = bools + e->b;
 			sum = sum + e->w;
 		}*/
