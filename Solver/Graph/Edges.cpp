@@ -47,21 +47,14 @@ Edges::Edges(string fileName) {
 						E1[nE1] = e;
 						nE1++;
 					}
-					/*cout << i << ", " << j << endl;
-					showDebug();
-					cout << endl << endl;*/
-					//cout << nE0+nE1 << ": {" << e->v1 << "," << e->v2 << "} " << e->b << ", " << e->w << endl;
+					
 				}
 			}
 		}
 		f.close();
-		/*cout << endl << endl << endl;
-		showDebug();*/
 
-		cout << "bubbleSort 0" << endl;
-		bubbleSort(E0, nE0);
-		cout << "bubbleSort 1" << endl;
-		bubbleSort(E1, nE1);
+		mergeSort(E0, nE0);
+		mergeSort(E1, nE1);
 	} else {
 		cout << "Fichier inexistant" << endl;
 	}

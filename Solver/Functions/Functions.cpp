@@ -45,6 +45,43 @@ void bubbleSort(Edge **edges, int size) {
 	} while (!sorted);
 }
 
+void mergeSort(Edge **edges, int size) {
+	Edge **res = new Edge * [size];
+	mergeSortRec(res, edges, 0, size);
+}
+
+void mergeSortRec(Edge **res, Edge **edges, int debut, int fin) {
+	if (fin-debut > 2) {
+		mergeSortRec(res, edges, debut, debut+(fin-debut)/2);
+		mergeSortRec(res, edges, debut+(fin-debut)/2, fin);
+		merge(res, edges, debut, debut+(fin-debut)/2, debut+(fin-debut)/2, fin);
+	} else {
+		merge(res, edges, debut, debut+1, debut+1, fin);
+	}
+}
+
+void merge(Edge **res, Edge **edges, int i1, int i2, int j1, int j2) {
+	int k = i1;
+	while (k < j2) {
+		if (i1 < i2) {
+			if ((j1 == j2) || (edges[i1]->w <= edges[j1]->w)) {
+				res[k] = edges[i1];
+				++i1;
+			} else {
+				res[k] = edges[j1];
+				++j1;
+			}
+		} else {
+			res[k] = edges[j1];
+			++j1;
+		}
+		++k;
+	}
+	for (int i = 0; i < j2; ++i) {
+		edges[i] = res[i];
+	}
+}
+
 void fusion(Edge **E0, Edge **E1, Edge **EX, int nE0, int nE1) {
 	int i, nE0b, nE1b, nEX;
 	nE0b = 0;

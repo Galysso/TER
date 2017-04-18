@@ -115,7 +115,6 @@ Edge *Naive::minimalSwapWith(Edge *e0) {
 }
 
 bool Naive::edgesInCycle(Edge *&minEdge, int v0, int v1, int v2) {
-
 	if (found) {
 		return false;
 	} else {
@@ -161,8 +160,6 @@ void Naive::calculateSolutions() {
 	sum = mono.getW();
 	bools = mono.getB();
 	cout << "Bi=(" << sum << "," << bools << ")" << endl;
-	/*cout << endl << "first sol :" << endl;
-	mono.showDebug();*/
 
 	//sol = mono.getBlPlus();
 	sol = mono.getBl();
@@ -173,22 +170,6 @@ void Naive::calculateSolutions() {
 	Si[0] = sol;
 	nSol = 1;
 	do {
-
-///////////////////////////////////
-		/*cout << endl << "to add :" << endl;
-		for (int i = 0; i < nToAdd; ++i) {
-			e = toAdd[i];
-			cout << i << ": {" << e->v1 << "," << e->v2 << "} " << e->b << ", " << e->w << endl;
-		}*/
-//////////////////////////////////
-
-
-
-
-
-
-
-
 		minSwapFound = false;
 		for (int i = 0; i < nToAdd; ++i) {
 			e = minimalSwapWith(toAdd[i]);
@@ -213,35 +194,10 @@ void Naive::calculateSolutions() {
 			Si[nSol] = sol;
 			++nSol;
 		
-
-
-
-
-
-
-/////////////////////////////////
-		/*int sum = 0;
-		int bools = 0;
-		cout << endl << "next sol :" << endl;
-		for (int i = 0; i < edges->getCard()-1; ++i) {
-			e = sol[i];
-			cout << i << ": {" << e->v1 << "," << e->v2 << "} " << e->b << ", " << e->w << endl;
-			bools = bools + e->b;
-			sum = sum + e->w;
-		}*/
-		sum = sum - minE1->w + minE0->w;
-		bools = bools - minE1->b + minE0->b;
-		cout << "Bi=(" << sum << "," << bools << ")" << endl;
-	}
-
-
-///////////////////////////////////
-
-
-
-
-
-
+			sum = sum - minE1->w + minE0->w;
+			bools = bools - minE1->b + minE0->b;
+			cout << "Bi=(" << sum << "," << bools << ")" << endl;
+		}
 
 	} while (minSwapFound);
 

@@ -147,7 +147,7 @@ void MonoObj::calculateBu() {
 		e = E0[i];
 		if (getRoot(e->v1) != getRoot(e->v2)) {
 			setRoot(e->v2, e->v1);
-			BlPlus[cpt] = e;
+			Bu[cpt] = e;
 			++cpt;
 			b = b + e->b;
 			w = w + e->w;
@@ -160,7 +160,7 @@ void MonoObj::calculateBu() {
 		e = E1[i];
 		if (getRoot(e->v1) != getRoot(e->v2)) {
 			setRoot(e->v2, e->v1);
-			BlPlus[cpt] = e;
+			Bu[cpt] = e;
 			++cpt;
 			b = b + e->b;
 			w = w + e->w;

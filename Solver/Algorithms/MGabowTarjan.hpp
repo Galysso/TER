@@ -2,18 +2,31 @@
 #define MGABOWTARJAN_HPP
 
 #include "../Graph/Edges.hpp"
+#include "../Graph/Graph.hpp"
 #include "MonoObj.hpp"
 
 class MGabowTarjan {
 	private:
+		int b;
+		int w;
 		Edges *edges;
-		//MonoObj mono;
+		Edge **E0;
+		Edge **E1;
+		Edge **Bl;
+		Edge **Bu;
 		Edge **toAdd;		// Edges to add
 		Edge **toDelete;	// Edges to delete (toAdd[i], toDelete[i]) is a minimal swap
+		int nbSwap;			// The number of swaps
+		int nActual;
 
 	private:
+		void showEdges(Edge **e, int n);
+
 		Edge **firstL();
 		Edge **firstU();
+		Edge **UlessU1(Edge **U, Edge **U1, int n, int nU1, int &nU2);
+		void P(Edge **L, Edge **U, int n);
+		Edge **E1lessE2(Edge **E1, Edge **E2, int n1, int n2, int &nRes);	// E1 et E2 triés dans l'ordre croissant selon c
 		
 	public:
 		MGabowTarjan(Edges *edges);
@@ -37,6 +50,15 @@ class MGabowTarjan {
 
 				// Déterminer G inclu dans L tel que B=(L\G)uU1 forme un arbre couvrant de M pour
 				// c et satisfaisant BnE0=U1
+
+
+
+
+		// 5) Déterminer les arêtes de L telles que si on les retire et qu'on les unit avec U1 nous obtenons
+		//	une base minimale du graphe selon c et telles que les arêtes de E0 de la base sont égales à U1
+
+		// En d'autres termes :
+		// Trouver la base qui contient tous les éléments de U1 (les E0) et les meilleurs éléments
 
 };
 

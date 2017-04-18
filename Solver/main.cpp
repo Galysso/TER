@@ -11,16 +11,17 @@ int main(int argc, char *argv[]) {
 	clock_t start, stop;
 
 	//Edges edges("../Instances/jouetManuel11");
-	//Edges edges("../Instances/test1000");
+	start = clock();
+	//Edges edges("../Instances/jouet100");
 	Edges edges;
 	cout << "graph :" << endl;
 	edges.showDebug();
-	Naive naive(&edges);
-	//MGabowTarjan mGaTar(&edges);
+	//Naive naive(&edges);
+	MGabowTarjan mGaTar(&edges);
 	
-	start = clock();
-	naive.calculateSolutions();
-	//mGaTar.calculateSolutions();
+	//start = clock();
+	//naive.calculateSolutions();
+	mGaTar.calculateSolutions();
 	stop = clock();
 
 	cout << endl << "temps : " << (double)(stop-start)/CLOCKS_PER_SEC << "s" << endl;

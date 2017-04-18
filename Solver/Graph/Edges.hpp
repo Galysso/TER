@@ -16,6 +16,11 @@ struct Edge {
 	int w;
 };
 
+bool operator <(const Edge &Ea, const Edge &Eb);
+bool operator <(const Edge Ea, const Edge Eb);
+
+int compare(const void *a, const void *b);
+
 class Edges {
 	private:
 		Edge **E0;
