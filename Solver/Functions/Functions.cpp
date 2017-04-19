@@ -102,14 +102,6 @@ void fusion(Edge **E0, Edge **E1, Edge **EX, int nE0, int nE1) {
 			++nE1b;
 		}
 	}
-
-
-	/*cout << endl << endl;
-	Edge *e;
-	for (i = 0; i < nEX; ++i) {
-		e = EX[i];
-		cout << i << ": {" << e->v1 << "," << e->v2 << "} " << e->b << ", " << e->w << endl;
-	}*/
 }
 
 void bubbleSortVertices(int *v, bool *b, int *w, int size) {

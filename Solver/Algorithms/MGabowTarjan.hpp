@@ -9,6 +9,7 @@ class MGabowTarjan {
 	private:
 		int b;
 		int w;
+		MonoObj *mono;
 		Edges *edges;
 		Edge **E0;
 		Edge **E1;
@@ -22,14 +23,14 @@ class MGabowTarjan {
 	private:
 		void showEdges(Edge **e, int n);
 
-		Edge **firstL();
-		Edge **firstU();
-		Edge **UlessU1(Edge **U, Edge **U1, int n, int nU1, int &nU2);
-		void P(Edge **L, Edge **U, int n);
+		void mergeEdges(Edge **&e, int n);
+		void P(Edge **M, Edge **L, Edge **U, Edge **S, int m, int s, int n);
+		Edge **E1interE2(Edge **E1, Edge **E2, int n1, int n2, int &nRes);
+		Edge **E1unionE2(Edge **E1, Edge **E2, int n1, int n2, int &nRes);
 		Edge **E1lessE2(Edge **E1, Edge **E2, int n1, int n2, int &nRes);	// E1 et E2 triés dans l'ordre croissant selon c
 		
 	public:
-		MGabowTarjan(Edges *edges);
+		MGabowTarjan(Edges *edges, bool plus);
 		void calculateSolutions();
 		
 

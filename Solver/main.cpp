@@ -11,13 +11,14 @@ int main(int argc, char *argv[]) {
 	clock_t start, stop;
 
 	//Edges edges("../Instances/jouetManuel11");
-	start = clock();
 	//Edges edges("../Instances/jouet100");
+	//Edges edges("../Instances/test1000Grand");
 	Edges edges;
+	start = clock();
 	cout << "graph :" << endl;
 	edges.showDebug();
 	//Naive naive(&edges);
-	MGabowTarjan mGaTar(&edges);
+	MGabowTarjan mGaTar(&edges, false);
 	
 	//start = clock();
 	//naive.calculateSolutions();
