@@ -27,7 +27,7 @@ class Naive {
 
 	public:
 		Naive(Edges *edges);
-		void calculateSolutions();
+		void calculateSolutions(bool plus);
 		Edge ***getSolutions();
 		int getNSol();
 };

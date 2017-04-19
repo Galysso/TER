@@ -27,9 +27,9 @@ void MonoObj::setRoot(int indV, int ind) {
 	while (root != indV) {
 		roots[indV] = ind;
 		indV = root;
-		root = roots[root];
+		root = roots[indV];
 	}
-	roots[indV] = ind;
+	roots[root] = ind;
 }
 
 void MonoObj::calculateBl() {
@@ -169,6 +169,46 @@ void MonoObj::calculateBu() {
 	}
 }
 
+Edge **MonoObj::calculateBase(Edge **S, Edge **L, Edge **U1, int ns, int nl, int nu1, int &nRes) {
+	int card = edges->getCard();
+	Edge **res = new Edge * [nl];
+	Edge *e;
+	nRes = 0;
+
+	int i;
+
+	for (i = 0; i < card; ++i) {
+		roots[i] = i;
+	}
+
+	for (i = 0; i < ns; ++i) {
+		e = S[i];
+		setRoot(e->v2, e->v1);
+	}
+
+	for (i = 0; i < nu1; ++i) {
+		e = U1[i];
+		setRoot(e->v2, e->v1);
+	}
+
+	i = 0;
+	while (i < nl) {
+		e = L[i];
+		//showDebug();
+		//cout << "getRoot("<<e->v1<<") :" << endl;
+		//cout << getRoot(e->v1) << endl;
+		if (getRoot(e->v1) != getRoot(e->v2)) {//cout << "COCO" << endl;
+			setRoot(e->v2, e->v1);
+		} else {
+			res[nRes] = e;
+			++nRes;
+		}
+		++i;
+	}
+
+	return res;
+}
+
 int MonoObj::getB() {
 	return b;
 }
@@ -195,13 +235,17 @@ void MonoObj::showDebug() {
 	int sum = 0;
 	int bools = 0;
 	Edge *e;
-	for (int i = 0; i < card-1; ++i) {
+	/*for (int i = 0; i < card-1; ++i) {
 		e = Bl[i];
 		cout << i << ": {" << e->v1 << "," << e->v2 << "} " << e->b << ", " << e->w << endl;
 		sum = sum + e->w;
 		bools = bools + e->b;
 	}
-	cout << "Bi=(" << sum << "," << bools << ")" << endl;
+	cout << "Bi=(" << sum << "," << bools << ")" << endl;*/
+
+	for (int i = 0; i < card-1; ++i) {
+		cout << i << ": " << roots[i] << endl;
+	}
 }
 
 // 1 à 2

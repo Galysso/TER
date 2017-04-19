@@ -82,6 +82,48 @@ void merge(Edge **res, Edge **edges, int i1, int i2, int j1, int j2) {
 	}
 }
 
+void mergeSort(Edge **E1, Edge **E2, int size) {
+	Edge **res1 = new Edge * [size];
+	Edge **res2 = new Edge * [size];
+	mergeSortRec(res1, res2, E1, E2, 0, size);
+}
+
+void mergeSortRec(Edge **res1, Edge **res2, Edge **E1, Edge **E2, int debut, int fin) {
+	if (fin-debut > 2) {
+		mergeSortRec(res1, res2, E1, E2, debut, debut+(fin-debut)/2);
+		mergeSortRec(res1, res2, E1, E2, debut+(fin-debut)/2, fin);
+		merge(res1, res2, E1, E2, debut, debut+(fin-debut)/2, debut+(fin-debut)/2, fin);
+	} else {
+		merge(res1, res2, E1, E2, debut, debut+1, debut+1, fin);
+	}
+}
+
+void merge(Edge **res1, Edge **res2, Edge **E1, Edge **E2, int i1, int i2, int j1, int j2) {
+	int k = i1;
+	while (k < j2) {
+		if (i1 < i2) {
+			if ((j1 == j2) || ((E1[i1]->w - E2[i1]->w) <= (E1[j1]->w - E2[j1]->w))) {
+				res1[k] = E1[i1];
+				res2[k] = E2[i1];
+				++i1;
+			} else {
+				res1[k] = E1[j1];
+				res2[k] = E2[j1];
+				++j1;
+			}
+		} else {
+			res1[k] = E1[j1];
+			res2[k] = E2[j1];
+			++j1;
+		}
+		++k;
+	}
+	for (int i = 0; i < j2; ++i) {
+		E1[i] = res1[i];
+		E2[i] = res2[i];
+	}
+}
+
 void fusion(Edge **E0, Edge **E1, Edge **EX, int nE0, int nE1) {
 	int i, nE0b, nE1b, nEX;
 	nE0b = 0;
@@ -161,4 +203,10 @@ int dichotomySearch(int *tab, int size, int val) {
 	}
 
 	return ind;
+}
+
+void showEdges(Edge **e, int n) {
+	for (int i = 0; i < n; ++i) {
+		cout << i << ": (" << e[i]->v1 << "," << e[i]->v2 << ") b=" << e[i]->b << " c=" << e[i]->w << endl;
+	}
 }

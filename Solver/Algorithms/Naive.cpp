@@ -1,6 +1,7 @@
 #include "Naive.hpp"
 #include "../Graph/Edges.hpp"
 #include "MonoObj.hpp"
+#include "../Functions/Functions.hpp"
 
 Naive::Naive(Edges *edges) {
 	this->edges = edges;
@@ -148,21 +149,27 @@ bool Naive::edgesInCycle(Edge *&minEdge, int v0, int v1, int v2) {
 	}
 }
 
-void Naive::calculateSolutions() {
+void Naive::calculateSolutions(bool plus) {
 	Edge *e, *minE0, *minE1;
 	int minCost;
 	bool minSwapFound;
 	int sum, bools;
 
 	MonoObj mono(edges);
-	//mono.calculateBlPlus();
-	mono.calculateBl();
+	if (plus) {
+		mono.calculateBlPlus();
+		sol = mono.getBlPlus();
+	} else {
+		mono.calculateBl();
+		sol = mono.getBl();
+	}
 	sum = mono.getW();
 	bools = mono.getB();
-	cout << "Bi=(" << sum << "," << bools << ")" << endl;
 
-	//sol = mono.getBlPlus();
-	sol = mono.getBl();
+	/*cout << endl << "Bl =" << endl;
+	showEdges(sol, edges->getCard()-1);*/
+	cout << "Bi=(" << sum << "," << bools << ")" << endl;
+	
 	calculateNear();
 	calculateToAdd();
 

@@ -11,8 +11,6 @@ class MGabowTarjan {
 		int w;
 		MonoObj *mono;
 		Edges *edges;
-		Edge **E0;
-		Edge **E1;
 		Edge **Bl;
 		Edge **Bu;
 		Edge **toAdd;		// Edges to add
@@ -21,8 +19,6 @@ class MGabowTarjan {
 		int nActual;
 
 	private:
-		void showEdges(Edge **e, int n);
-
 		void mergeEdges(Edge **&e, int n);
 		void P(Edge **M, Edge **L, Edge **U, Edge **S, int m, int s, int n);
 		Edge **E1interE2(Edge **E1, Edge **E2, int n1, int n2, int &nRes);
@@ -30,8 +26,8 @@ class MGabowTarjan {
 		Edge **E1lessE2(Edge **E1, Edge **E2, int n1, int n2, int &nRes);	// E1 et E2 triés dans l'ordre croissant selon c
 		
 	public:
-		MGabowTarjan(Edges *edges, bool plus);
-		void calculateSolutions();
+		MGabowTarjan(Edges *edges);
+		void calculateSolutions(bool plus);
 		
 
 		// M le graphe

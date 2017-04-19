@@ -8,21 +8,23 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
+	cout << endl;
 	clock_t start, stop;
 
-	//Edges edges("../Instances/jouetManuel11");
+	Edges edges("../Instances/jouetManuel11");
 	//Edges edges("../Instances/jouet100");
 	//Edges edges("../Instances/test1000Grand");
-	Edges edges;
-	start = clock();
-	cout << "graph :" << endl;
-	edges.showDebug();
-	//Naive naive(&edges);
-	MGabowTarjan mGaTar(&edges, false);
+	//Edges edges;
+
+
+	//cout << "graph :" << endl;
+	//edges.showDebug();
+	Naive naive(&edges);
+	MGabowTarjan mGaTar(&edges);
 	
-	//start = clock();
-	//naive.calculateSolutions();
-	mGaTar.calculateSolutions();
+	start = clock();
+	//naive.calculateSolutions(false);
+	mGaTar.calculateSolutions(false);
 	stop = clock();
 
 	cout << endl << "temps : " << (double)(stop-start)/CLOCKS_PER_SEC << "s" << endl;

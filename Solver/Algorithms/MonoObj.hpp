@@ -28,6 +28,7 @@ class MonoObj {
 		Edge **getBl();
 		Edge **getBlPlus();
 		Edge **getBu();
+		Edge **calculateBase(Edge **S, Edge **L, Edge **U1, int ns, int nl, int nu1, int &nRes);
 
 		void showDebug();
 };

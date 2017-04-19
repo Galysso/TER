@@ -1,10 +1,5 @@
 #include "MGabowTarjan.hpp"
-
-void MGabowTarjan::showEdges(Edge **e, int n) {
-	for (int i = 0; i < n; ++i) {
-		cout << i << ": (" << e[i]->v1 << "," << e[i]->v2 << ") b=" << e[i]->b << " c=" << e[i]->w << endl;
-	}
-}
+#include "../Functions/Functions.hpp"
 
 Edge **MGabowTarjan::E1lessE2(Edge **E1, Edge **E2, int n1, int n2, int &nRes) {
 	Edge **res = new Edge * [n1];
@@ -58,12 +53,12 @@ Edge **MGabowTarjan::E1interE2(Edge **E1, Edge **E2, int n1, int n2, int &nRes) 
 Edge **MGabowTarjan::E1unionE2(Edge **E1, Edge **E2, int n1, int n2, int &nRes) {
 	Edge **res = new Edge * [n1+n2];
 	int notCopy[n2];
-	int  k, j, j1, j2, nc;
+	int  i, j, k, j1, j2, nc;
 	nRes = 0;
 	j1 = 0;
 	nc = 0;
 
-	for (int i = 0; i < n1; ++i) {
+	for (i = 0; i < n1; ++i) {
 		while ((j1 < n2) && (E2[j1]->w < E1[i]->w)) {
 			++j1;
 		}
@@ -77,42 +72,54 @@ Edge **MGabowTarjan::E1unionE2(Edge **E1, Edge **E2, int n1, int n2, int &nRes) 
 		}
 	}
 
-	k = 0;
+	i = 0;
 	j = 0;
-	for (int i = 0; i < n1; ++i) {
-		while ((j < n2) && (E2[j]->w <= E1[i]->w)) {
+	k = 0;
+	while ((i < n1) && (j < n2)) {
+		if (E1[i]->w <= E2[j]->w) {
+			if ((k < nc) && (notCopy[k] == i)) {
+				++k;
+			} else {
+				res[nRes] = E1[i];
+				++nRes;
+			}
+			++i;
+		} else {
 			res[nRes] = E2[j];
 			++nRes;
 			++j;
 		}
-		if (notCopy[k] == i) {
+	}
+	for (i; i < n1; ++i) {
+		if ((k < nc) && (notCopy[k] == i)) {
 			++k;
 		} else {
 			res[nRes] = E1[i];
 			++nRes;
 		}
 	}
-	while (j < n2) {
+	for (j; j < n2; ++j) {
 		res[nRes] = E2[j];
 		++nRes;
-		++j;
 	}
 
 	return res;
 }
 
-void MGabowTarjan::P(Edge **M, Edge **L, Edge **U, Edge **S, int s, int m, int n) {
+void MGabowTarjan::P(Edge **M, Edge **L, Edge **U, Edge **S, int m, int s, int n) {
 	if (n == 1) {
 		toAdd[nActual] = U[0];
 		toDelete[nActual] = L[0];
 		++nActual;
 	} else {
-		int nU1 = n/2;
-		Edge **U1 = new Edge * [nU1];
+		Edge **U1, **U2, **G, **Mbis, **Lbis, **Ubis, **Sbis, **Etmp, **Etmp2;
+		int nu1, nu2, ng, nmbis, nlbis, nubis, nsbis, netmp;
+		nu1 = n/2;
+		U1 = new Edge * [nu1];
 		int i, j;
 		i = 0;
 		j = 0;
-		while (i < nU1) {
+		while (i < nu1) {
 			if (M[j]->b) {
 			} else {
 				U1[i] = M[j];
@@ -120,15 +127,35 @@ void MGabowTarjan::P(Edge **M, Edge **L, Edge **U, Edge **S, int s, int m, int n
 			}
 			++j;
 		}
-		int nU2;
-		Edge **U2 = E1lessE2(U, U1, n, nU1, nU2);
 
+		G = mono->calculateBase(S, L, U1, s, n, nu1, ng);
+		U2 = E1lessE2(U, U1, n, nu1, nu2);
 
-		cout << endl << "U1 :" << endl;
-		showEdges(U1, nU1);
+		Etmp = E1lessE2(L, G, n, ng, netmp);
 
-		cout << endl << "U2 :" << endl;
-		showEdges(U2, nU2);
+		Sbis = E1unionE2(S, Etmp, s, netmp, nsbis);
+//		delete [] Etmp;
+
+		Etmp = E1lessE2(M, U2, m, nu2, netmp);
+		Mbis = E1lessE2(Etmp, Sbis, netmp, nsbis, nmbis);
+//		delete [] Etmp;
+
+		P(Mbis, G, U1, Sbis, nmbis, nsbis, nu1);
+
+//		delete [] Mbis;
+//		delete [] Sbis;
+
+		Sbis = E1unionE2(S, U1, s, nu1, nsbis);
+		Etmp = E1lessE2(M, G, m, ng, netmp);
+		Mbis = E1lessE2(Etmp, U1, netmp, nu1, nmbis);
+//		delete [] Etmp;
+		Lbis = E1lessE2(L, G, n, ng, nlbis);
+
+		P(Mbis, Lbis, U2, Sbis, nmbis, nsbis, nlbis);
+
+//		delete [] Sbis;
+//		delete [] Mbis;
+//		delete [] Lbis;
 	}
 }
 
@@ -160,11 +187,12 @@ void MGabowTarjan::mergeEdges(Edge **&e, int n) {
 	}
 }
 
-MGabowTarjan::MGabowTarjan(Edges *edges, bool plus) {
+MGabowTarjan::MGabowTarjan(Edges *edges) {
 	this->edges = edges;
+}
+
+void MGabowTarjan::calculateSolutions(bool plus) {
 	int card = edges->getCard();
-	E0 = edges->getE0();
-	E1 = edges->getE1();
 	mono = new MonoObj(edges);
 	if (plus) {
 		mono->calculateBlPlus();
@@ -175,10 +203,19 @@ MGabowTarjan::MGabowTarjan(Edges *edges, bool plus) {
 	}
 	b = mono->getB();
 	w = mono->getW();
+
+	/*cout << endl << "Bl :" << endl;
+	showEdges(Bl, card-1);*/
+	cout << "Bi=("<<w<<","<<b<<")" << endl;
+
 	nbSwap = b;
 	mono->calculateBu();
 	Bu = mono->getBu();
 	nbSwap -= mono->getB();				// The number of swap is the difference of the number of edges with cost b equals 1
+	
+	toDelete = new Edge * [nbSwap];
+	toAdd = new Edge * [nbSwap];
+
 	nActual = 0;
 
 	if (!plus) {
@@ -186,20 +223,9 @@ MGabowTarjan::MGabowTarjan(Edges *edges, bool plus) {
 	}
 	mergeEdges(Bu, card-1);
 
-	cout << endl << "Bl : " << endl;
-	showEdges(Bl, card-1);
-
-	cout << endl << "Bu : " << endl;
-	showEdges(Bu, card-1);
-
 	Edge **L = E1lessE2(Bl, Bu, card-1, card-1, nbSwap);
 
-	cout << endl << "L : " << endl;
-	showEdges(L, nbSwap);
-
 	Edge **U = E1lessE2(Bu, Bl, card-1, card-1, nbSwap);
-	cout << endl << "U : " << endl;
-	showEdges(U, nbSwap);
 
 	int m, s, mbis;
 	Edge **M, **S, **Mbis;
@@ -207,17 +233,16 @@ MGabowTarjan::MGabowTarjan(Edges *edges, bool plus) {
 	S = E1interE2(Bl, Bu, card-1, card-1, s);
 	M = E1lessE2(Mbis, S, mbis, s, m);
 
-	cout << endl << "S :" << endl;
-	showEdges(S, s);
-
-	cout << endl << "M :" << endl;
-	showEdges(M, m);
-
-	delete [] Mbis;
+	//delete [] Mbis;
 
 	P(M, L, U, S, m, s, nbSwap);
-}
 
-void MGabowTarjan::calculateSolutions() {
+	mergeSort(toAdd, toDelete, nbSwap);
 
+	for (int i = 0; i < nbSwap; ++i) {
+		w = w - toDelete[i]->w + toAdd[i]->w;
+		b = b - toDelete[i]->b + toAdd[i]->b;
+		cout << endl << "min swap : {" << toDelete[i]->v1 << "," << toDelete[i]->v2 << "} <-> {" << toAdd[i]->v1 << "," << toAdd[i]->v2 << "} c=" << toAdd[i]->w - toDelete[i]->w << endl;
+		cout << "Bi=(" << w << "," << b << ")" << endl;
+	}
 }
