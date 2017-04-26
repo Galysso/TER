@@ -14,10 +14,15 @@ void Naive::calculateToAdd() {
 	nToAdd = 0;
 	bool isPresent;
 	int i, j;
-	int nE0 = edges->getNE0();
-	Edge **E0 = edges->getE0();
+	/*int nE0 = edges->getNE0();
+	Edge **E0 = edges->getE0();*/
 	Edge *e;
 	int v, cardV;
+
+	MonoObj mono(edges);
+	int nE0 = edges->getCard()-1;
+	mono.calculateBu();
+	Edge **E0 = mono.getBu();
 
 	for (i = 0; i < nE0; ++i) {
 		e = E0[i];

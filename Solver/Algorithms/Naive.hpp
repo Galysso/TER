@@ -11,6 +11,7 @@ class Naive {
 		Edge **sol;		// Solution courante
 		Edge ***Si;		// Liste des solutions
 		Edge ***near;	// Matrice des arêtes reliées à un sommet dans la solution courante
+		Edge **Tu;
 		int *nNear;		// Matrice des nombre d'arêtes reliés à un sommet dans la solution courante
 		int nSol;
 		bool found;

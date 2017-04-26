@@ -11,9 +11,10 @@ int main(int argc, char *argv[]) {
 	cout << endl;
 	clock_t start, stop;
 
-	Edges edges("../Instances/jouetManuel11");
-	//Edges edges("../Instances/jouet100");
-	//Edges edges("../Instances/test1000Grand");
+	//Edges edges("../Instances/jouetManuel11");
+	//Edges edges("../Instances/I1000_40");
+	//Edges edges("../Instances/I100_20");
+	Edges edges("../Instances/I1000_test");
 	//Edges edges;
 
 
@@ -21,17 +22,13 @@ int main(int argc, char *argv[]) {
 	//edges.showDebug();
 	Naive naive(&edges);
 	MGabowTarjan mGaTar(&edges);
-	
+
 	start = clock();
 	//naive.calculateSolutions(false);
 	mGaTar.calculateSolutions(false);
 	stop = clock();
 
 	cout << endl << "temps : " << (double)(stop-start)/CLOCKS_PER_SEC << "s" << endl;
-
-	/*mono.showDebug();
-	cout << "b=" << mono.getB() << endl;
-	cout << "w=" << mono.getW() << endl;*/
 
 	cout << endl<< "COCO" << endl;
 }
